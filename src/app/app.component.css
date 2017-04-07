@@ -1,0 +1,11 @@
+div{
+    background-color: #ffcc34;}
+
+div>div{
+    background-color: #ff22ff;
+    padding-left: 10px;
+}
+div>div>div{
+    background-color: #22ccaa;
+    padding-left: 20px;
+}
