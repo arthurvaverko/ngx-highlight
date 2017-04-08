@@ -5,6 +5,7 @@ Angular directive to highlight text in the html container and it's children.
 
 Usage
 ----
+Run `npm install ngx-highlight`
 
 Add `[highlight]="searchTerm"` directive to any block element.
 
