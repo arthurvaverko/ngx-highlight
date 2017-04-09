@@ -11,7 +11,29 @@ Add `[highlight]="searchTerm"` directive to any block element.
 
 Example
 
-    <div [highlight]="searchTerm">
+	...
+	import { HighlightModule } from 'ngx-highlight/fill-highlight.module';
+
+	@NgModule({
+		declarations: [
+			AppComponent,
+		],
+		imports: [
+			BrowserModule,
+			FormsModule,
+			HttpModule,
+			HighlightModule,
+		],
+		providers: [],
+		bootstrap: [AppComponent]
+	})
+
+	export class AppModule { }
+
+    
+And in your HTML template:
+
+	<div [highlight]="searchTerm">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Qua
         tempora qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.
     </div>
