@@ -1,5 +1,9 @@
 div{
-    background-color: #ffcc34;}
+    background-color: #ffcc34;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #000;
+    border-top: 1px dashed #777;
+}
 
 div>div{
     background-color: #ff22ff;

@@ -1,8 +1,12 @@
 <h1>
-  {{title}}
+  NgxHihghlight
 </h1>
 <input type="text" [(ngModel)]="searchTerm" />
 <div [highlight]="searchTerm">
+  <div>
+    some text before the loremo ipsum with html tags to check they are not chagend.
+    html div span 
+  </div>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam convallis, odio nec dictum facilisis, enim nunc scelerisque
   nisi, maximus semper felis dui eget neque. Phasellus ante felis, maximus sed justo mattis, semper pharetra neque. Pellentesque
   ante massa, pulvinar ac massa sit amet, malesuada fringilla dui. Mauris sollicitudin sollicitudin justo vel elementum.
@@ -18,4 +22,18 @@
       qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.
     </div>
   </div>
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora
+    qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora
+      qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.
+    </div>
+  </div>
+
+
+<!--<ul>
+  <li *ngFor="let item of items">{{item}}</li>
+</ul>-->
+
 </div>
