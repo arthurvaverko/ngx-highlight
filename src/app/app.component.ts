@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   items = [];
 
   constructor() {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
       this.items.push(`Item${i}`);
     }
   }

@@ -1,12 +1,15 @@
-import { Directive, ElementRef, Input, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, SimpleChanges, AfterViewInit, AfterViewChecked } from '@angular/core';
 
 @Directive({
   selector: '[highlight]'
 })
-export class HighlightDirective implements OnChanges, AfterViewInit {
-  @Input('highlight') searchTerm = '';
+export class HighlightDirective implements OnChanges, AfterViewInit, AfterViewChecked {
+
+  @Input('highlight') searchTerm = undefined;
   @Input() caseSensitive = true;
-  private WRAPPER_TOKEN = "##";
+
+  private viewRendered = false;
+  private WRAPPER_TOKEN = "==--==##";
 
   private get caseSensitivity(): string { return this.caseSensitive ? '' : 'i'; }
 
@@ -21,9 +24,18 @@ export class HighlightDirective implements OnChanges, AfterViewInit {
     this.highlightSearchTerm();
   }
 
+  ngAfterViewChecked(): void {
+    this.viewRendered = true;
+  }
+
 
   highlightSearchTerm() {
+    // initial ngChage call will result with null \ undefined.
     if (!this.searchTerm) {
+      // when user deletes all text the searchTerm is set to '' we need to remove all marks.
+      if (this.viewRendered) {
+        this.removePreviouslyMarkedTextInNode();
+      }
       return;
     };
 
@@ -86,10 +98,10 @@ export class HighlightDirective implements OnChanges, AfterViewInit {
   }
 
   private removePreviouslyMarkedTextInNode() {
-      const node = this.el.nativeElement;
-      const markingPattern = new RegExp('<mark>|<\/mark>', 'g');
-      const cleanText = node.innerHTML.replace(markingPattern, '');
-      node.innerHTML = cleanText;
+    const node = this.el.nativeElement;
+    const markingPattern = new RegExp('<mark>|<\/mark>', 'g');
+    const cleanText = node.innerHTML.replace(markingPattern, '');
+    node.innerHTML = cleanText;
   }
 
   // private highlightedNewTextInNode() {
