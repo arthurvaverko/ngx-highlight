@@ -8,7 +8,7 @@ exports = module.exports = __webpack_require__(45)();
 
 
 // module
-exports.push([module.i, "div{\r\n    background-color: #ffcc34;}\r\n\r\ndiv>div{\r\n    background-color: #ff22ff;\r\n    padding-left: 10px;\r\n}\r\ndiv>div>div{\r\n    background-color: #22ccaa;\r\n    padding-left: 20px;\r\n}\r\n", ""]);
+exports.push([module.i, "div{\r\n    background-color: #ffcc34;\r\n    margin-bottom: 10px;\r\n    border-bottom: 1px dashed #000;\r\n    border-top: 1px dashed #777;\r\n}\r\n\r\ndiv>div{\r\n    background-color: #ff22ff;\r\n    padding-left: 10px;\r\n}\r\ndiv>div>div{\r\n    background-color: #22ccaa;\r\n    padding-left: 20px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -21,7 +21,7 @@ module.exports = module.exports.toString();
 /***/ 137:
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\n  {{title}}\n</h1>\n<input type=\"text\" [(ngModel)]=\"searchTerm\" />\n<div [highlight]=\"searchTerm\">\n  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam convallis, odio nec dictum facilisis, enim nunc scelerisque\n  nisi, maximus semper felis dui eget neque. Phasellus ante felis, maximus sed justo mattis, semper pharetra neque. Pellentesque\n  ante massa, pulvinar ac massa sit amet, malesuada fringilla dui. Mauris sollicitudin sollicitudin justo vel elementum.\n  Fusce et mattis magna, a dictum augue. Pellentesque rhoncus lacus molestie augue consectetur, ut hendrerit mi maximus.\n  Quisque cursus est sit amet molestie rutrum. Morbi faucibus sodales lacus et lacinia. Pellentesque id elit condimentum,\n  lacinia tellus vitae, ornare lectus. Cras nisi massa, maximus viverra vestibulum ac, sollicitudin id arcu. Nam a commodo\n  massa.\n  <div>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\n    qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\n    <div>\n      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\n      qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\n    </div>\n  </div>\n</div>"
+module.exports = "<h1>\n  NgxHihghlight\n</h1>\n<input type=\"text\" [(ngModel)]=\"searchTerm\" />\n<div [highlight]=\"searchTerm\">\n  <div>\n    some text before the loremo ipsum with html tags to check they are not chagend.\n    html div span \n  </div>\n  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam convallis, odio nec dictum facilisis, enim nunc scelerisque\n  nisi, maximus semper felis dui eget neque. Phasellus ante felis, maximus sed justo mattis, semper pharetra neque. Pellentesque\n  ante massa, pulvinar ac massa sit amet, malesuada fringilla dui. Mauris sollicitudin sollicitudin justo vel elementum.\n  Fusce et mattis magna, a dictum augue. Pellentesque rhoncus lacus molestie augue consectetur, ut hendrerit mi maximus.\n  Quisque cursus est sit amet molestie rutrum. Morbi faucibus sodales lacus et lacinia. Pellentesque id elit condimentum,\n  lacinia tellus vitae, ornare lectus. Cras nisi massa, maximus viverra vestibulum ac, sollicitudin id arcu. Nam a commodo\n  massa.\n  <div>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\n    qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\n    <div>\n      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\n      qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\n    </div>\n  </div>\n  <div>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\n    qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\n    <div>\n      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\n      qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\n    </div>\n  </div>\n\n\n<!--<ul>\n  <li *ngFor=\"let item of items\">{{item}}</li>\n</ul>-->\n\n</div>\n"
 
 /***/ }),
 
@@ -80,11 +80,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'app works!';
+        this.items = [];
+        for (var i = 0; i < 10; i++) {
+            this.items.push("Item" + i);
+        }
     }
+    AppComponent.prototype.ngOnInit = function () {
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -92,7 +101,8 @@ AppComponent = __decorate([
         selector: 'app-root',
         template: __webpack_require__(137),
         styles: [__webpack_require__(135)]
-    })
+    }),
+    __metadata("design:paramtypes", [])
 ], AppComponent);
 
 //# sourceMappingURL=app.component.js.map
@@ -168,6 +178,7 @@ var HighlightDirective = (function () {
         this.el = el;
         this.searchTerm = '';
         this.caseSensitive = true;
+        this.WRAPPER_TOKEN = "##";
     }
     Object.defineProperty(HighlightDirective.prototype, "caseSensitivity", {
         get: function () { return this.caseSensitive ? '' : 'i'; },
@@ -182,13 +193,57 @@ var HighlightDirective = (function () {
     };
     HighlightDirective.prototype.highlightSearchTerm = function () {
         if (!this.searchTerm) {
-            this.removePreviouslyMarkedTextInNode();
             return;
         }
         ;
         if (this.el.nativeElement) {
             this.removePreviouslyMarkedTextInNode();
-            this.highlightedNewTextInNode();
+            this.markMatchedTextTokens(this.el.nativeElement);
+        }
+    };
+    HighlightDirective.prototype.markMatchedTextTokens = function (htmlNode) {
+        var _this = this;
+        var _searchTerm = this.getSearchTerm();
+        var searchRegex = new RegExp(_searchTerm, 'gmi');
+        var _searchTermUniqueTokens = this.getUniqueTokenWrappedSearchTerm();
+        var searchRegexUniqueTokens = new RegExp(_searchTermUniqueTokens, 'gmi');
+        this.traverseHtmlElementsTree(htmlNode, function (e) {
+            _this.traverseNodesInElement(htmlNode.childNodes, function (node) { return _this.wrapUniqueTokensAroundMatchedText(node, searchRegex); });
+        });
+        this.markMatchedTextAndRemoveUniqueTokens(htmlNode, searchRegexUniqueTokens);
+    };
+    HighlightDirective.prototype.markMatchedTextAndRemoveUniqueTokens = function (htmlNode, searchRegex) {
+        var _this = this;
+        if (htmlNode.innerHTML) {
+            var innerHtml = htmlNode.innerHTML;
+            var newHtml = innerHtml.replace(searchRegex, function (match) {
+                var wrapperLength = _this.WRAPPER_TOKEN.length;
+                var markedStr = match.substr(wrapperLength, match.length - (wrapperLength * 2));
+                return "<mark>" + markedStr + "</mark>";
+            });
+            htmlNode.innerHTML = newHtml;
+        }
+    };
+    HighlightDirective.prototype.traverseNodesInElement = function (nodes, visitCallback) {
+        for (var i = 0; i < nodes.length; i++) {
+            var node = nodes[i];
+            if (node.nodeType === 3) {
+                visitCallback(node);
+            }
+        }
+    };
+    HighlightDirective.prototype.wrapUniqueTokensAroundMatchedText = function (htmlNode, searchRegex) {
+        var innerText = htmlNode.nodeValue;
+        var newText = innerText.replace(searchRegex, this.WRAPPER_TOKEN + "$&" + this.WRAPPER_TOKEN);
+        htmlNode.nodeValue = newText;
+    };
+    HighlightDirective.prototype.traverseHtmlElementsTree = function (currentNode, visitCallback) {
+        if (currentNode) {
+            visitCallback(currentNode);
+        }
+        for (var i = 0; i < currentNode.children.length; i++) {
+            var childNode = currentNode.children[i];
+            this.markMatchedTextTokens(childNode);
         }
     };
     HighlightDirective.prototype.removePreviouslyMarkedTextInNode = function () {
@@ -197,19 +252,25 @@ var HighlightDirective = (function () {
         var cleanText = node.innerHTML.replace(markingPattern, '');
         node.innerHTML = cleanText;
     };
-    HighlightDirective.prototype.highlightedNewTextInNode = function () {
-        var node = this.el.nativeElement;
-        var htmlNegativeLookaheadPattern = '(?![^<>]*>)';
-        var searchTermPattern = this.getSearchTerm();
-        var searchRegex = new RegExp(searchTermPattern + htmlNegativeLookaheadPattern, 'gmi');
-        console.log("using regex:", searchRegex);
-        var markedText = node.innerHTML.replace(searchRegex, '<mark>$&</mark>');
-        node.innerHTML = markedText;
-    };
+    // private highlightedNewTextInNode() {
+    //   const node = this.el.nativeElement;
+    //   const htmlNegativeLookaheadPattern = '(?![^<>]*>)';
+    //   const searchTermPattern = this.getSearchTerm();
+    //   const searchRegex = new RegExp(searchTermPattern + htmlNegativeLookaheadPattern, 'gmi');
+    //   const markedText = node.innerHTML.replace(searchRegex, '<mark>$&</mark>');
+    //   node.innerHTML = markedText;
+    // }
     HighlightDirective.prototype.getSearchTerm = function () {
-        var escapedSearchTerm = "(" + this.escapeRegExp(this.searchTerm) + ")";
+        var escapedSearchTerm = "" + this.escapeRegExp(this.searchTerm);
         var spaceToMultiMatchRegex = new RegExp(' ', 'gm');
         escapedSearchTerm = escapedSearchTerm.replace(spaceToMultiMatchRegex, '|');
+        return escapedSearchTerm;
+    };
+    HighlightDirective.prototype.getUniqueTokenWrappedSearchTerm = function () {
+        var escapedSearchTerm = this.escapeRegExp(this.searchTerm);
+        var spaceToMultiMatchRegex = new RegExp(' ', 'gm');
+        escapedSearchTerm = escapedSearchTerm.replace(spaceToMultiMatchRegex, this.WRAPPER_TOKEN + "|" + this.WRAPPER_TOKEN);
+        escapedSearchTerm = "" + this.WRAPPER_TOKEN + escapedSearchTerm + this.WRAPPER_TOKEN;
         return escapedSearchTerm;
     };
     HighlightDirective.prototype.escapeRegExp = function (str) {
@@ -243,7 +304,7 @@ var _a;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_highlight_highlight_directive__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__highlight_directive__ = __webpack_require__(79);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HighlightModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -264,8 +325,8 @@ HighlightModule = __decorate([
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["a" /* CommonModule */]
         ],
-        declarations: [__WEBPACK_IMPORTED_MODULE_2_app_highlight_highlight_directive__["a" /* HighlightDirective */]],
-        exports: [__WEBPACK_IMPORTED_MODULE_2_app_highlight_highlight_directive__["a" /* HighlightDirective */]]
+        declarations: [__WEBPACK_IMPORTED_MODULE_2__highlight_directive__["a" /* HighlightDirective */]],
+        exports: [__WEBPACK_IMPORTED_MODULE_2__highlight_directive__["a" /* HighlightDirective */]]
     })
 ], HighlightModule);
 
