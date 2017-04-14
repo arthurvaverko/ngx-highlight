@@ -21,7 +21,7 @@ module.exports = module.exports.toString();
 /***/ 137:
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\n  NgxHihghlight\n</h1>\n<input type=\"text\" [(ngModel)]=\"searchTerm\" />\n<div [highlight]=\"searchTerm\">\n  <div>\n    some text before the loremo ipsum with html tags to check they are not chagend.\n    html div span \n  </div>\n  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam convallis, odio nec dictum facilisis, enim nunc scelerisque\n  nisi, maximus semper felis dui eget neque. Phasellus ante felis, maximus sed justo mattis, semper pharetra neque. Pellentesque\n  ante massa, pulvinar ac massa sit amet, malesuada fringilla dui. Mauris sollicitudin sollicitudin justo vel elementum.\n  Fusce et mattis magna, a dictum augue. Pellentesque rhoncus lacus molestie augue consectetur, ut hendrerit mi maximus.\n  Quisque cursus est sit amet molestie rutrum. Morbi faucibus sodales lacus et lacinia. Pellentesque id elit condimentum,\n  lacinia tellus vitae, ornare lectus. Cras nisi massa, maximus viverra vestibulum ac, sollicitudin id arcu. Nam a commodo\n  massa.\n  <div>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\n    qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\n    <div>\n      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\n      qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\n    </div>\n  </div>\n  <div>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\n    qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\n    <div>\n      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\n      qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\n    </div>\n  </div>\n\n\n<!--<ul>\n  <li *ngFor=\"let item of items\">{{item}}</li>\n</ul>-->\n\n</div>\n"
+module.exports = "<h1>\r\n  NgxHihghlight\r\n</h1>\r\n<input type=\"text\" [(ngModel)]=\"searchTerm\" />\r\n<div [highlight]=\"searchTerm\">\r\n  <div>\r\n    some text before the loremo ipsum with html tags to check they are not chagend.\r\n    html div span \r\n  </div>\r\n  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam convallis, odio nec dictum facilisis, enim nunc scelerisque\r\n  nisi, maximus semper felis dui eget neque. Phasellus ante felis, maximus sed justo mattis, semper pharetra neque. Pellentesque\r\n  ante massa, pulvinar ac massa sit amet, malesuada fringilla dui. Mauris sollicitudin sollicitudin justo vel elementum.\r\n  Fusce et mattis magna, a dictum augue. Pellentesque rhoncus lacus molestie augue consectetur, ut hendrerit mi maximus.\r\n  Quisque cursus est sit amet molestie rutrum. Morbi faucibus sodales lacus et lacinia. Pellentesque id elit condimentum,\r\n  lacinia tellus vitae, ornare lectus. Cras nisi massa, maximus viverra vestibulum ac, sollicitudin id arcu. Nam a commodo\r\n  massa.\r\n  <div>\r\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\r\n    qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\r\n    <div>\r\n      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\r\n      qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\r\n    </div>\r\n  </div>\r\n  <div>\r\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\r\n    qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\r\n    <div>\r\n      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, suscipit atque excepturi rem culpa, aperiam et. Quae tempora\r\n      qui molestias distinctio beatae suscipit doloremque reiciendis, quisquam vel, recusandae, obcaecati dolor.\r\n    </div>\r\n  </div>\r\n<ul>\r\n  <li *ngFor=\"let item of items\">{{item}}</li>\r\n</ul>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -88,7 +88,7 @@ var AppComponent = (function () {
     function AppComponent() {
         this.title = 'app works!';
         this.items = [];
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 100; i++) {
             this.items.push("Item" + i);
         }
     }
@@ -176,9 +176,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var HighlightDirective = (function () {
     function HighlightDirective(el) {
         this.el = el;
-        this.searchTerm = '';
+        this.searchTerm = undefined;
         this.caseSensitive = true;
-        this.WRAPPER_TOKEN = "##";
+        this.viewRendered = false;
+        this.WRAPPER_TOKEN = "==--==##";
     }
     Object.defineProperty(HighlightDirective.prototype, "caseSensitivity", {
         get: function () { return this.caseSensitive ? '' : 'i'; },
@@ -191,8 +192,16 @@ var HighlightDirective = (function () {
     HighlightDirective.prototype.ngAfterViewInit = function () {
         this.highlightSearchTerm();
     };
+    HighlightDirective.prototype.ngAfterViewChecked = function () {
+        this.viewRendered = true;
+    };
     HighlightDirective.prototype.highlightSearchTerm = function () {
+        // initial ngChage call will result with null \ undefined.
         if (!this.searchTerm) {
+            // when user deletes all text the searchTerm is set to '' we need to remove all marks.
+            if (this.viewRendered) {
+                this.removePreviouslyMarkedTextInNode();
+            }
             return;
         }
         ;
