@@ -1,6 +1,6 @@
 {
   "name": "ngx-highlight",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Angular directive to highlight text in the html container and it's children.",
   "repository": {
     "type": "git",
