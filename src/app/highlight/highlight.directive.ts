@@ -9,7 +9,7 @@ export class HighlightDirective implements OnChanges, AfterViewInit, AfterViewCh
   @Input() caseSensitive = true;
 
   private viewRendered = false;
-  private WRAPPER_TOKEN = "==--==##";
+  private WRAPPER_TOKEN = '==--==##';
 
   private get caseSensitivity(): string { return this.caseSensitive ? '' : 'i'; }
 
@@ -37,7 +37,7 @@ export class HighlightDirective implements OnChanges, AfterViewInit, AfterViewCh
         this.removePreviouslyMarkedTextInNode();
       }
       return;
-    };
+    }
 
     if (this.el.nativeElement) {
       this.removePreviouslyMarkedTextInNode();
