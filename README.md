@@ -12,7 +12,7 @@ Add `[highlight]="searchTerm"` directive to any block element.
 Example
 
 	...
-	import { HighlightModule } from 'ngx-highlight/fill-highlight.module';
+	import { HighlightModule } from 'ngx-highlight/highlight.module';
 
 	@NgModule({
 		declarations: [
